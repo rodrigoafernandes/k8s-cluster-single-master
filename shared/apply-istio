@@ -1,3 +1,9 @@
+Kubernetes Dashboard
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
+kubectl proxy --address 0.0.0.0 --accept-hosts '.*' &
+
+---------------------------------------------------------------------------------------------
 curl -L https://git.io/getLatestIstio | sh -
 
 cd istio-1.2.2
