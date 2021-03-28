@@ -1,4 +1,5 @@
 *.log
 .k8s
 .vagrant
-shared/istio-1.2.2
+shared/istio-*
+app

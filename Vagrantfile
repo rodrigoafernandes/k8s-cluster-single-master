@@ -26,6 +26,12 @@ Vagrant.configure("2") do |config|
                 shell.path = "./shared/config-cluster.sh"
                 shell.args = [ip_private, conf['role']]
             end
+            k.trigger.after :up do |trigger|
+                if "#{name}" == 'node'
+                    trigger.only_on = 'cp'
+                    trigger.run_remote = {path: "./shared/config-resources.sh"}
+                end
+            end
         end
     end
 end
