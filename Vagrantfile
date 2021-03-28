@@ -1,12 +1,11 @@
 vms = {
     'cp' => {'memory' => '2048', 'cpus' => '2', 'ip' => '10', 'role' => 'master'},
-    'node1' => {'memory' => '4096', 'cpus' => '2', 'ip' => '20', 'role' => 'worker'},
-    'node2' => {'memory' => '4096', 'cpus' => '2', 'ip' => '30', 'role' => 'worker'},
-    'pcr' => {'memory' => '1024', 'cpus' => '1', 'ip' => '40', 'role' => 'registry'}
+    'node1' => {'memory' => '1024', 'cpus' => '1', 'ip' => '20', 'role' => 'worker'},
+    'node2' => {'memory' => '1024', 'cpus' => '1', 'ip' => '30', 'role' => 'worker'}
 }
 
 Vagrant.configure("2") do |config|
-    config.vm.box = "ubuntu/bionic64"
+    config.vm.box = "ubuntu/focal64"
     config.vm.synced_folder "./shared", "/opt/vagrant/data"
     defaul_host = "-k8s.gigiodesenvolvimento.com.br"
 
@@ -24,7 +23,7 @@ Vagrant.configure("2") do |config|
             end
 
             k.vm.provision "shell" do |shell|
-                shell.path = "./shared/bootstrap.sh"
+                shell.path = "./shared/config-cluster.sh"
                 shell.args = [ip_private, conf['role']]
             end
         end
